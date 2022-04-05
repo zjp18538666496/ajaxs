@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>ajax练习</title>
+</head>
+<body>
+<div class="container">
+    <button onclick='fnAnAjaxRequest()' type="button">调用get请求</button>
+     <button type="button" onclick='fnAnAjaxRequests()'>调用post请求</button>
+    <span>我将要输出的内容：</span>
+    <span id="w"></span>
+</div>
+</body>
+<script>
+    /* ajax get请求 */
+    function fnAnAjaxRequest() {
+        /* 1.创建异步对象*/
+        let xhr = new XMLHttpRequest()
+        /* 2.向服务器发送请求，并指定该HTTP请求的方法、URL及验证信息. */
+        xhr.open('GET', 'A.json?name=hangman&name=lisi', true)
+        /* 3.监听onreadystatechange事件，当readystate等于4时返回responseText; */
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                let data = JSON.parse(xhr.response)
+                let arrayinfo = data.sites;
+                for (let i = 0; i < arrayinfo.length; i++) {
+                    let name = arrayinfo[i].name
+                    let url = arrayinfo[i].url
+                    console.log(`网站的名称是：${name}`, `网站的地址是：${url}`)
+                }
+                arrayinfo.forEach((item, index) => {
+                    let name = arrayinfo[index].name
+                    let url = arrayinfo[index].url
+                    console.log(`网站的名称是：${name}`, `网站的地址是：${url}`)
+                })
+            }
+        }
+        /* 4.调用send方法传递参数。*/
+        xhr.send()
+    }
+
+    function fnAnAjaxRequests() {
+        let xhr = new XMLHttpRequest()
+        xhr.open('POST', 'A.json', true)
+        xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
+        xhr.send()
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log(xhr.response)
+            }
+        }
+    }
+</script>
+</html>
