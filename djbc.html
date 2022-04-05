@@ -133,7 +133,7 @@
             /* 判断存在"onpress"和"mouse"属性 */
             if ($(this).attr("onpress") && $(this).attr("mouse")) {
             } else {
-                $(this).css("background", "pink"); 
+                $(this).css("background", "pink");
                 $(this).attr("mouse", "mouse")
                 $(this).find("td:first").find("img").attr("src", "img/mr.png")
             }
@@ -143,7 +143,7 @@
             if ($(this).attr("onpress") && $(this).attr("mouse")) {
             } else {
                 $(this).css("background", "#fff");
-                $(this).removeAttr("mouse"); 
+                $(this).removeAttr("mouse");
                 $(this).find("td:first").find("img").attr("src", "img/yc.png");
             }
         });
