@@ -113,37 +113,37 @@
 <script src="./jquery-3.5.1/jquery-3.5.1.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
     $().ready(function () {
-        $("#tbl>tbody>tr").click(function () {
-            /* 判断存在"che"属性 */
-            if ($(this).attr("che")) {
+        let trDom = $("#tbl>tbody>tr"); /* 表格元素 */
+        trDom.click(function () {
+            /* 判断存在"onpress"属性 */
+            if ($(this).attr("onpress")) {
                 $(this).css("background", "#fff");
-                $(this).removeAttr("che"); //删除属性"che"
-                $(this).removeAttr("che2"); //删除属性"che"
+                $(this).removeAttr("onpress"); //删除属性"onpress"
+                $(this).removeAttr("mouse"); //删除属性"mouse"
                 $(this).find("td:first").find("img").attr("src", "img/yc.png");
             } else {
                 $(this).css("background", "pink"); //选中行添加选中色
-                $(this).attr("che", "che") //为当前添加"che"属性
-                $(this).attr("che2", "che2") //为当前添加"che"属性
+                $(this).attr("onpress", "onpress") //为当前添加"onpress"属性
+                $(this).attr("mouse", "mouse") //为当前添加"mouse"属性
                 $(this).find("td:first").find("img").attr("src", "img/mr.png")
             }
         });
         /* 鼠标移入事件 */
-        $("#tbl>tbody>tr").mouseover(function () {
-            /* 判断存在"che"属性 */
-            if ($(this).attr("che") && $(this).attr("che2")) {
+        trDom.mouseover(function () {
+            /* 判断存在"onpress"和"mouse"属性 */
+            if ($(this).attr("onpress") && $(this).attr("mouse")) {
             } else {
-                $(this).css("background", "pink"); //选中行添加选中色
-                $(this).attr("che2", "che2") //为当前添加"che"属性
+                $(this).css("background", "pink"); 
+                $(this).attr("mouse", "mouse")
                 $(this).find("td:first").find("img").attr("src", "img/mr.png")
             }
         });
         /* 鼠标移出事件 */
-        $("#tbl>tbody>tr").mouseout(function () {
-            /* 判断存在"che"属性 */
-            if ($(this).attr("che") && $(this).attr("che2")) {
+        trDom.mouseout(function () {
+            if ($(this).attr("onpress") && $(this).attr("mouse")) {
             } else {
                 $(this).css("background", "#fff");
-                $(this).removeAttr("che2"); //删除属性"che"
+                $(this).removeAttr("mouse"); 
                 $(this).find("td:first").find("img").attr("src", "img/yc.png");
             }
         });
